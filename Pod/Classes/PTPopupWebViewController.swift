@@ -69,7 +69,7 @@ open class PTPopupWebViewController : UIViewController {
         switch backgroundStyle {
         case .blurEffect(let blurStyle):
             let nib = UINib(nibName: "PTPopupWebViewControllerBlur", bundle: bundle)
-            view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+            view = nib.instantiate(withOwner: self, options: nil).first as? UIView
             blurView.effect = UIBlurEffect(style: blurStyle)
             
         case .opacity(let color):
@@ -97,7 +97,7 @@ open class PTPopupWebViewController : UIViewController {
         popupView.translatesAutoresizingMaskIntoConstraints = false
         for attribute in attributes {
             let constraint = NSLayoutConstraint(
-                item  : contentView, attribute: attribute, relatedBy: NSLayoutConstraint.Relation.equal,
+                item  : contentView!, attribute: attribute, relatedBy: NSLayoutConstraint.Relation.equal,
                 toItem: popupView,   attribute: attribute, multiplier: 1.0, constant: 0.0)
             contentView.addConstraint(constraint)
             constraints[attribute] = constraint
