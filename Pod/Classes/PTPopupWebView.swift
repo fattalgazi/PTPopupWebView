@@ -110,8 +110,7 @@ open class PTPopupWebView : UIView {
         - string: URL string
      */
     open func URL(string urlString: String) -> Self {
-        URL(Foundation.URL(string: urlString))
-        return self
+        return URL(Foundation.URL(string: urlString))
     }
 
     
@@ -406,7 +405,7 @@ open class PTPopupWebView : UIView {
                 switch keyPath {
                 case "enabled":
                     if let change = change {
-                        if let index = buttons.index(of: button), let enabled = change[NSKeyValueChangeKey.newKey] as? Bool {
+                        if let index = buttons.firstIndex(of: button), let enabled = change[NSKeyValueChangeKey.newKey] as? Bool {
                             if enabled {
                                 button.tintColor = buttonSettings[index].foregroundColor
                                     ?? style!.buttonForegroundColor
@@ -482,7 +481,7 @@ open class PTPopupWebView : UIView {
     
     
     @objc internal func buttonTapped (_ sender: AnyObject) {
-        if let button = sender as? UIButton, let index = buttons.index(of: button) {
+        if let button = sender as? UIButton, let index = buttons.firstIndex(of: button) {
             if index < buttonSettings.count {
                 let buttonSetting = buttonSettings[index]
                 switch buttonSetting.type {
